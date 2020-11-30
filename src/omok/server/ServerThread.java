@@ -88,10 +88,10 @@ public class ServerThread extends Thread {
 								for (int n = 0; n < serverFrame.threadList.size(); n++) {
 									if (serverFrame.threadList.get(n) == this) {
 										send("@@loging", n);
-										serverFrame.area.append(commandInfo[0] + " Áßº¹ Á¢¼Ó\n");
-										break;
+										serverFrame.area.append(commandInfo[0] + " ì¤‘ë³µ ì ‘ì†\n");
 									}
 								}
+								break;
 							} else if ((i + 1) == serverFrame.loginList.size()) {
 								String id = commandInfo[0];
 								String password = commandInfo[1];
@@ -194,7 +194,7 @@ public class ServerThread extends Thread {
 						}
 					} else if (commandType.equals("logout")) {
 						serverFrame.loginList.remove(player.getId());
-						serverFrame.area.append(player.getId() + " ·Î±×¾Æ¿ô\n");
+						serverFrame.area.append(player.getId() + " ë¡œê·¸ì•„ì›ƒ\n");
 						player.setId(null);
 						player.setPassword(null);
 						player.setNickname(null);
@@ -210,7 +210,7 @@ public class ServerThread extends Thread {
 							if (serverFrame.threadList.get(i) == this) {
 								serverFrame.threadList.get(i + 1).flag = false;
 								serverFrame.threadList.remove(serverFrame.threadList.get(i + 1));
-								serverFrame.area.append(serverFrame.threadList.size() / 2 + "¸í Á¢¼ÓÁß\n");
+								serverFrame.area.append(serverFrame.threadList.size() / 2 + "ëª… ì ‘ì†ì¤‘\n");
 								send("@@systemOut", i);
 							}
 						}
@@ -340,7 +340,7 @@ public class ServerThread extends Thread {
 				DataFormat df = (DataFormat) ois.readObject();
 				String fileName = df.getFileName();
 				Image img = df.getIcon().getImage();
-				String path = "E:/±¹ºñ¼ö¾÷/workspace/OmokGame/src/omok/server/userImage/";
+				String path = "E:/êµ­ë¹„ìˆ˜ì—…/workspace/OmokGame/src/omok/server/userImage/";
 				BufferedImage bimg = new BufferedImage(img.getWidth(null), img.getHeight(null),
 						BufferedImage.TYPE_INT_RGB);
 				Graphics2D g2 = bimg.createGraphics();
@@ -416,13 +416,13 @@ public class ServerThread extends Thread {
 			if (rs.next()) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send(type + " »ç¿ëºÒ°¡@@" + command, i);
+						send(type + " ì‚¬ìš©ë¶ˆê°€@@" + command, i);
 					}
 				}
 			} else {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send(type + " »ç¿ë°¡´É@@" + command, i);
+						send(type + " ì‚¬ìš©ê°€ëŠ¥@@" + command, i);
 					}
 				}
 			}
@@ -447,10 +447,10 @@ public class ServerThread extends Thread {
 			if (result != 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@°èÁ¤»ý¼º ¼º°ø", i);
-						serverFrame.area.append(id + "°èÁ¤ »ý¼º ¼º°ø\n");
+						send("@@ê³„ì •ìƒì„± ì„±ê³µ", i);
+						serverFrame.area.append(id + "ê³„ì • ìƒì„± ì„±ê³µ\n");
 						Image img = ImageUtil.getIcon(this.getClass(), "omok/server/userImage/defaultImg.jpg", 300, 300).getImage();
-						String path = "E:/±¹ºñ¼ö¾÷/workspace/OmokGame/src/omok/server/userImage/";
+						String path = "E:/êµ­ë¹„ìˆ˜ì—…/workspace/OmokGame/src/omok/server/userImage/";
 						BufferedImage bimg = new BufferedImage(img.getWidth(null), img.getHeight(null),
 								BufferedImage.TYPE_INT_RGB);
 						Graphics2D g2 = bimg.createGraphics();
@@ -462,8 +462,8 @@ public class ServerThread extends Thread {
 			} else {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@°èÁ¤»ý¼º ½ÇÆÐ", i);
-						serverFrame.area.append(id + "°èÁ¤ »ý¼º ½ÇÆÐ\n");
+						send("@@ê³„ì •ìƒì„± ì‹¤íŒ¨", i);
+						serverFrame.area.append(id + "ê³„ì • ìƒì„± ì‹¤íŒ¨\n");
 					}
 				}
 			}
@@ -500,9 +500,9 @@ public class ServerThread extends Thread {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					String playerInfo = getPlayerInfo();
 					if (serverFrame.threadList.get(i) == this) {
-						send(playerInfo + "@@·Î±×ÀÎ", i);
+						send(playerInfo + "@@ë¡œê·¸ì¸", i);
 						send(record(player.getId()) + "@@record", i);
-						serverFrame.area.append(id + " ·Î±×ÀÎ\n");
+						serverFrame.area.append(id + " ë¡œê·¸ì¸\n");
 						sendImg(player.getId(), i + 1);
 					}
 				}
@@ -511,8 +511,8 @@ public class ServerThread extends Thread {
 			if (rs.getRow() == 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@·Î±×ÀÎ ½ÇÆÐ", i);
-						serverFrame.area.append(id + " ·Î±×ÀÎ ½ÇÆÐ\n");
+						send("@@ë¡œê·¸ì¸ ì‹¤íŒ¨", i);
+						serverFrame.area.append(id + " ë¡œê·¸ì¸ ì‹¤íŒ¨\n");
 					}
 				}
 			}
@@ -581,15 +581,15 @@ public class ServerThread extends Thread {
 			if (result != 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@°èÁ¤»èÁ¦ ¼º°ø", i);
-						serverFrame.area.append(id + " °èÁ¤ »èÁ¦\n");
+						send("@@ê³„ì •ì‚­ì œ ì„±ê³µ", i);
+						serverFrame.area.append(id + " ê³„ì • ì‚­ì œ\n");
 					}
 				}
 			} else if (result == 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@°èÁ¤»èÁ¦ ½ÇÆÐ", i);
-						serverFrame.area.append(id + " °èÁ¤»èÁ¦ ½ÇÆÐ\n");
+						send("@@ê³„ì •ì‚­ì œ ì‹¤íŒ¨", i);
+						serverFrame.area.append(id + " ê³„ì •ì‚­ì œ ì‹¤íŒ¨\n");
 					}
 				}
 			}
@@ -616,15 +616,15 @@ public class ServerThread extends Thread {
 				player.setNickname(nickname);
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send(password + "!" + nickname + "@@ºñ¹Ð¹øÈ£, º°¸í º¯°æ ¼º°ø", i);
-						serverFrame.area.append(id + " ºñ¹Ð¹øÈ£, º°¸í º¯°æ\n");
+						send(password + "!" + nickname + "@@ë¹„ë°€ë²ˆí˜¸, ë³„ëª… ë³€ê²½ ì„±ê³µ", i);
+						serverFrame.area.append(id + " ë¹„ë°€ë²ˆí˜¸, ë³„ëª… ë³€ê²½\n");
 					}
 				}
 			} else if (result == 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@ºñ¹Ð¹øÈ£, º°¸í º¯°æ ½ÇÆÐ", i);
-						serverFrame.area.append(id + " ºñ¹Ð¹øÈ£, º°¸í º¯°æ ½ÇÆÐ\n");
+						send("@@ë¹„ë°€ë²ˆí˜¸, ë³„ëª… ë³€ê²½ ì‹¤íŒ¨", i);
+						serverFrame.area.append(id + " ë¹„ë°€ë²ˆí˜¸, ë³„ëª… ë³€ê²½ ì‹¤íŒ¨\n");
 					}
 				}
 			}
@@ -649,15 +649,15 @@ public class ServerThread extends Thread {
 				player.setPassword(password);
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@ºñ¹Ð¹øÈ£ º¯°æ ¼º°ø", i);
-						serverFrame.area.append(id + " ºñ¹Ð¹øÈ£ º¯°æ\n");
+						send("@@ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì„±ê³µ", i);
+						serverFrame.area.append(id + " ë¹„ë°€ë²ˆí˜¸ ë³€ê²½\n");
 					}
 				}
 			} else if (result == 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@ºñ¹Ð¹øÈ£ º¯°æ ½ÇÆÐ", i);
-						serverFrame.area.append(id + " ºñ¹Ð¹øÈ£ º¯°æ ½ÇÆÐ\n");
+						send("@@ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì‹¤íŒ¨", i);
+						serverFrame.area.append(id + " ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì‹¤íŒ¨\n");
 					}
 				}
 			}
@@ -682,15 +682,15 @@ public class ServerThread extends Thread {
 				player.setNickname(nickname);
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send(nickname + "@@º°¸í º¯°æ ¼º°ø", i);
-						serverFrame.area.append(id + " º°¸í º¯°æ\n");
+						send(nickname + "@@ë³„ëª… ë³€ê²½ ì„±ê³µ", i);
+						serverFrame.area.append(id + " ë³„ëª… ë³€ê²½\n");
 					}
 				}
 			} else if (result == 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@º°¸í º¯°æ ½ÇÆÐ", i);
-						serverFrame.area.append(id + " º°¸í º¯°æ ½ÇÆÐ\n");
+						send("@@ë³„ëª… ë³€ê²½ ì‹¤íŒ¨", i);
+						serverFrame.area.append(id + " ë³„ëª… ë³€ê²½ ì‹¤íŒ¨\n");
 					}
 				}
 			}
@@ -721,7 +721,7 @@ public class ServerThread extends Thread {
 			for (int i = 0; i < serverFrame.threadList.size(); i++) {
 				if (serverFrame.threadList.get(i) == this) {
 					send(msg + "@@rank", i);
-					serverFrame.area.append("¼øÀ§ Á¤º¸ Àü¼Û\n");
+					serverFrame.area.append("ìˆœìœ„ ì •ë³´ ì „ì†¡\n");
 				}
 			}
 		} catch (SQLException e) {
@@ -809,12 +809,12 @@ public class ServerThread extends Thread {
 			pstmt = serverFrame.getCon().prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, rival);
-			pstmt.setString(3, "½Â");
+			pstmt.setString(3, "ìŠ¹");
 			int result = pstmt.executeUpdate();
 			if (result != 0) {
-				serverFrame.area.append(id + "½Â " + rival + "ÆÐ\n");
+				serverFrame.area.append(id + "ìŠ¹ " + rival + "íŒ¨\n");
 			} else {
-				System.out.println("±â·Ï µî·Ï ½ÇÆÐ");
+				System.out.println("ê¸°ë¡ ë“±ë¡ ì‹¤íŒ¨");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -832,10 +832,10 @@ public class ServerThread extends Thread {
 			pstmt = serverFrame.getCon().prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, rival);
-			pstmt.setString(3, "ÆÐ");
+			pstmt.setString(3, "íŒ¨");
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
-				System.out.println("±â·Ï µî·Ï ½ÇÆÐ");
+				System.out.println("ê¸°ë¡ ë“±ë¡ ì‹¤íŒ¨");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -879,7 +879,7 @@ public class ServerThread extends Thread {
 			if (result != 0) {
 				for (int i = 0; i < serverFrame.threadList.size(); i++) {
 					if (serverFrame.threadList.get(i) == this) {
-						send("@@ÀÌ¹ÌÁö º¯°æ ¿Ï·á", i - 1);
+						send("@@ì´ë¯¸ì§€ ë³€ê²½ ì™„ë£Œ", i - 1);
 					}
 				}
 			}
